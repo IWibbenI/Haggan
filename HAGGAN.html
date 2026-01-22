@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)file:///K:/AI/haggan_pastell.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAGGAN - Pastell Glow</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 1s;
+            overflow: hidden;
+        }
+        #haggan {
+            font-size: 7vw;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-weight: bold;
+            letter-spacing: 0.15em;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+        }
+        #haggan .glow {
+            position: absolute;
+            left: 0; top: 50%;
+            width: 100%;
+            height: 1.2em;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+            filter: blur(8px);
+        }
+        #haggan span {
+            position: relative;
+            z-index: 1;
+            color: var(--text-dark, #a88);
+            text-shadow: 0 0 32px #fff, 0 0 64px #fff, 0 0 8px #fff, 0 0 2px #fff;
+            mix-blend-mode: lighten;
+        }
+        .heart {
+            position: absolute;
+            font-size: 4vw;
+            pointer-events: none;
+            animation: pop 1.2s ease-out forwards;
+            filter: drop-shadow(0 2px 8px #b00) drop-shadow(0 0px 16px #fff2);
+        }
+        .heart svg path {
+            fill: #ff0033 !important;
+            stroke: #fff2;
+            stroke-width: 1.2;
+        }
+        .big-heart {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            width: 50vw;
+            height: 50vw;
+            pointer-events: none;
+            animation: bigPop 2s ease-out forwards;
+        }
+        .confetti {
+            position: fixed;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .grattis {
+            position: fixed;
+            left: 50%; top: 20%;
+            transform: translateX(-50%);
+            background: #fffbe8;
+            color: #ff69b4;
+            font-size: 2.2em;
+            font-weight: bold;
+            border-radius: 16px;
+            box-shadow: 0 4px 32px #ff69b488;
+            padding: 24px 40px;
+            z-index: 10000;
+            opacity: 0.97;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5) translateY(0); opacity: 0.7; }
+            60% { transform: scale(1.2) translateY(-30px); opacity: 1; }
+            100% { transform: scale(1) translateY(-60px); opacity: 0; }
+        }
+        @keyframes bigPop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.7; }
+            60% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body style="background: rgb(255, 227, 231);">
+    <div id="haggan">
+      <span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">H</span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">A</span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">G</span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">G</span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">A</span>
+        <span class="letter" style="color: rgb(199, 124, 133); text-shadow: rgb(255, 179, 186) 0px 0px 32px, rgb(255, 179, 186) 0px 0px 64px, rgb(255, 255, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 2px;">N</span>
+      </span>
+      <div class="glow" style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgb(255, 179, 186) 50%, rgba(255, 255, 255, 0) 100%);"></div>
+    </div>
+    <div id="confetti" class="confetti" style="display:none"></div>
+    <div id="grattis" class="grattis" style="display:none">Grattis! Du har hängt på Haggan i 100 sekunder!</div>
+    <audio id="trumpet" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae7b7.mp3"></audio>
+    <script>
+    // Pastellfärger (text, bakgrund, mörkare text)
+    const pastelPairs = [
+        ['#FFB3BA', '#FFE3E7', '#C77C85'], // rosa
+        ['#BAE1FF', '#E3F6FF', '#6CA7C7'], // blå
+        ['#BAFFC9', '#E7FFE3', '#6FC7A7'], // grön
+        ['#FFFFBA', '#FFFFE3', '#C7C77C'], // gul
+        ['#FFDFBA', '#FFF3E3', '#C7A77C'], // orange
+        ['#E2BAFF', '#F3E3FF', '#A77CC7'], // lila
+        ['#Baffea', '#e3fff7', '#7cc7a7'], // turkos
+    ];
+    let colorIndex = 0;
+    const haggan = document.getElementById('haggan');
+    function setColors() {
+        const [text, bg, textDark] = pastelPairs[colorIndex];
+        // Alla bokstäver får samma färg
+        document.querySelectorAll('#haggan .letter').forEach(l => {
+          l.style.color = textDark;
+          l.style.textShadow = `0 0 32px ${text}, 0 0 64px ${text}, 0 0 8px #fff, 0 0 2px #fff`;
+        });
+        haggan.querySelector('.glow').style.background = `linear-gradient(90deg, rgba(255,255,255,0) 0%, ${text} 50%, rgba(255,255,255,0) 100%)`;
+        document.body.style.background = bg;
+        colorIndex = (colorIndex + 1) % pastelPairs.length;
+    }
+    setColors();
+    setInterval(setColors, 2000);
+
+    // Heart click (less white outline, more shadow)
+    const heartSVG = `<svg width="1em" height="1em" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 62s-1.7-1.3-4.2-3.3C17.2 47.2 6 37.2 6 25.5 6 15.6 14.6 8 24.5 8c5.2 0 10.1 2.6 13.5 6.7C41.4 10.6 46.3 8 51.5 8 61.4 8 70 15.6 70 25.5c0 11.7-11.2 21.7-25.8 33.2C37.7 60.7 36 62 36 62z" fill="#ff0033" stroke="#fff2" stroke-width="1.2"/></svg>`;
+    const bigHeartSVG = `<svg width="100%" height="100%" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 62s-1.7-1.3-4.2-3.3C17.2 47.2 6 37.2 6 25.5 6 15.6 14.6 8 24.5 8c5.2 0 10.1 2.6 13.5 6.7C41.4 10.6 46.3 8 51.5 8 61.4 8 70 15.6 70 25.5c0 11.7-11.2 21.7-25.8 33.2C37.7 60.7 36 62 36 62z" fill="#ff0033" stroke="#fff2" stroke-width="1.2"/></svg>`;
+    // Hockeyklubba SVG
+    const hockeySVG = `<svg width="1em" height="1em" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="50" y="10" width="8" height="40" rx="4" fill="#888"/><rect x="30" y="50" width="28" height="8" rx="4" fill="#222"/><rect x="30" y="50" width="8" height="8" rx="4" fill="#888"/></svg>`;
+
+    let clickCount = 0;
+    document.body.addEventListener('click', function(e) {
+        clickCount++;
+        if (clickCount === 67) {
+            const bigHeart = document.createElement('div');
+            bigHeart.className = 'big-heart';
+            bigHeart.innerHTML = bigHeartSVG;
+            document.body.appendChild(bigHeart);
+            setTimeout(() => bigHeart.remove(), 2000);
+            clickCount = 0;
+            return;
+        }
+        const el = document.createElement('span');
+        el.className = 'heart';
+        if (Math.random() < 0.1) {
+            el.innerHTML = hockeySVG;
+        } else {
+            el.innerHTML = heartSVG;
+        }
+        el.style.left = (e.clientX - 32) + 'px';
+        el.style.top = (e.clientY - 32) + 'px';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1200);
+    });
+
+    // Confetti and trumpet after 100 seconds
+    // MAMA A GIRL BEHIND YOU overlay
+    const overlayDiv = document.createElement('div');
+    overlayDiv.id = 'mamaOverlay';
+    overlayDiv.style.position = 'fixed';
+    overlayDiv.style.left = '0';
+    overlayDiv.style.top = '0';
+    overlayDiv.style.width = '100vw';
+    overlayDiv.style.height = '100vh';
+    overlayDiv.style.background = '#000';
+    overlayDiv.style.color = '#fff';
+    overlayDiv.style.display = 'flex';
+    overlayDiv.style.alignItems = 'center';
+    overlayDiv.style.justifyContent = 'center';
+    overlayDiv.style.fontSize = '5vw';
+    overlayDiv.style.fontFamily = "'Segoe UI', Arial, sans-serif";
+    overlayDiv.style.fontWeight = 'bold';
+    overlayDiv.style.zIndex = '20000';
+    overlayDiv.style.display = 'none';
+    overlayDiv.innerText = 'MAMA A GIRL BEHIND YOU';
+    document.body.appendChild(overlayDiv);
+    // White flash effect
+    const flashDiv = document.createElement('div');
+    flashDiv.id = 'whiteFlash';
+    flashDiv.style.position = 'fixed';
+    flashDiv.style.left = '0';
+    flashDiv.style.top = '0';
+    flashDiv.style.width = '100vw';
+    flashDiv.style.height = '100vh';
+    flashDiv.style.background = '#fff';
+    flashDiv.style.opacity = '1';
+    flashDiv.style.zIndex = '30000';
+    flashDiv.style.display = 'none';
+    document.body.appendChild(flashDiv);
+    function showConfettiAndBalloons() {
+        const confetti = document.getElementById('confetti');
+        const grattis = document.getElementById('grattis');
+        const trumpet = document.getElementById('trumpet');
+        confetti.innerHTML = '';
+        confetti.style.display = 'block';
+        grattis.style.display = 'block';
+        trumpet.currentTime = 0;
+        trumpet.play();
+        // Animate confetti
+        let confettiItems = [];
+        for(let i=0;i<120;i++){
+            const div = document.createElement('div');
+            div.style.position = 'absolute';
+            div.style.left = Math.random()*100+'vw';
+            div.style.top = Math.random()*100+'vh';
+            div.style.width = '12px';
+            div.style.height = '12px';
+            div.style.borderRadius = '50%';
+            div.style.background = `hsl(${Math.random()*360},80%,80%)`;
+            div.style.opacity = '0.85';
+            div.style.boxShadow = '0 2px 8px #fff2';
+            confetti.appendChild(div);
+            // Animate confetti
+            const angle = Math.random()*2*Math.PI;
+            const speed = 1 + Math.random()*2;
+            confettiItems.push({div, angle, speed, x: parseFloat(div.style.left), y: parseFloat(div.style.top)});
+        }
+        let elapsed = 0;
+        function animateConfetti() {
+            elapsed += 0.016;
+            confettiItems.forEach(item => {
+                item.x += Math.cos(item.angle)*item.speed;
+                item.y += Math.sin(item.angle)*item.speed;
+                item.div.style.left = item.x + 'vw';
+                item.div.style.top = item.y + 'vh';
+            });
+            if (elapsed < 6.7) requestAnimationFrame(animateConfetti);
+        }
+        animateConfetti();
+        // Balloons
+        if (!window.balloonCount) window.balloonCount = 1;
+        else window.balloonCount *= 2;
+        for(let i=0;i<window.balloonCount;i++){
+            const balloon = document.createElement('div');
+            balloon.style.position = 'fixed';
+            balloon.style.left = (10 + Math.random()*80) + 'vw';
+            balloon.style.bottom = '-80px';
+            balloon.style.width = '40px';
+            balloon.style.height = '60px';
+            balloon.style.borderRadius = '20px 20px 20px 20px / 30px 30px 30px 30px';
+            balloon.style.background = '#ff0033'; // röd som hjärtat
+            balloon.style.boxShadow = '0 8px 32px #0002';
+            balloon.style.zIndex = 10001;
+            balloon.style.transition = 'bottom 6.7s linear';
+            // Snöre
+            const string = document.createElement('div');
+            string.style.position = 'absolute';
+            string.style.left = '50%';
+            string.style.top = '100%';
+            string.style.transform = 'translateX(-50%)';
+            string.style.width = '2px';
+            string.style.height = '40px';
+            string.style.background = '#aaa';
+            string.style.borderRadius = '1px';
+            balloon.appendChild(string);
+            document.body.appendChild(balloon);
+            setTimeout(()=>{
+                balloon.style.bottom = '110vh';
+            }, 50);
+            setTimeout(()=>{
+                balloon.remove();
+            }, 6700);
+        }
+        setTimeout(()=>{
+            confetti.style.display = 'none';
+            grattis.style.display = 'none';
+            trumpet.pause();
+            // --- WHITE FLASH EFFECT ---
+            const flashDiv = document.createElement('div');
+            flashDiv.style.position = 'fixed';
+            flashDiv.style.left = '0';
+            flashDiv.style.top = '0';
+            flashDiv.style.width = '100vw';
+            flashDiv.style.height = '100vh';
+            flashDiv.style.background = '#fff';
+            flashDiv.style.zIndex = '30000';
+            flashDiv.style.opacity = '1';
+            document.body.appendChild(flashDiv);
+            setTimeout(()=>{
+                flashDiv.remove();
+                overlayDiv.style.display = 'flex';
+                document.body.style.background = '#000';
+                setTimeout(()=>{
+                    overlayDiv.style.display = 'none';
+                    document.body.style.background = '';
+                }, 2000);
+            }, 250); // 0.25 sekunder blixt
+        }, 5000);
+    }
+    setTimeout(function(){
+        showConfettiAndBalloons();
+        setInterval(showConfettiAndBalloons, 50000);
+    }, 37000);
+
+    // BYLER popup under HAGGAN
+    const bylerDiv = document.createElement('div');
+    bylerDiv.id = 'byler';
+    bylerDiv.style.position = 'fixed';
+    bylerDiv.style.left = '50%';
+    bylerDiv.style.top = '60%';
+    bylerDiv.style.transform = 'translateX(-50%)';
+    bylerDiv.style.fontFamily = "'Segoe UI', Arial, sans-serif";
+    bylerDiv.style.fontWeight = 'bold';
+    bylerDiv.style.fontSize = '3.5vw';
+    bylerDiv.style.letterSpacing = '0.15em';
+    bylerDiv.style.zIndex = '10002';
+    bylerDiv.style.display = 'none';
+    document.body.appendChild(bylerDiv);
+    function showByler() {
+        bylerDiv.innerHTML = '<span class="letter">B</span><span class="letter">Y</span><span class="letter">L</span><span class="letter">E</span><span class="letter">R</span>';
+        // Sätt färg och skugga som HAGGAN
+        const [text, bg, textDark] = pastelPairs[colorIndex];
+        document.querySelectorAll('#byler .letter').forEach(l => {
+          l.style.color = textDark;
+          l.style.textShadow = `0 0 32px ${text}, 0 0 64px ${text}, 0 0 8px #fff, 0 0 2px #fff`;
+        });
+        bylerDiv.style.display = 'block';
+        setTimeout(()=>{ bylerDiv.style.display = 'none'; }, 500);
+    }
+    setInterval(showByler, 15000);
+    </script><div id="mamaOverlay" style="position: fixed; left: 0px; top: 0px; width: 100vw; height: 100vh; background: rgb(0, 0, 0); color: rgb(255, 255, 255); display: none; align-items: center; justify-content: center; font-size: 5vw; font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: bold; z-index: 20000;">MAMA A GIRL BEHIND YOU</div><div id="whiteFlash" style="position: fixed; left: 0px; top: 0px; width: 100vw; height: 100vh; background: rgb(255, 255, 255); opacity: 1; z-index: 30000; display: none;"></div><div id="byler" style="position: fixed; left: 50%; top: 60%; transform: translateX(-50%); font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-weight: bold; font-size: 3.5vw; letter-spacing: 0.15em; z-index: 10002; display: none;"></div>
+
+
+</body></html>
